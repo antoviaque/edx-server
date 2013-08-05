@@ -31,3 +31,11 @@ h1 {
 .input-group-addon {
     width: 180px;
 }
+
+.errorlist {
+    color: red;
+    text-align: right;
+    list-style: none outside none;
+    padding-bottom: 15px;
+    font-size: 11pt;
+}

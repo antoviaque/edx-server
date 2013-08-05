@@ -1,54 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>edX Server Hosting</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- Bootstrap -->
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+{% extends "base.html" %}
 
-	<link href="http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600" rel="stylesheet" />
-	<link href="/static/css/all.css" rel="stylesheet" />
-</head>
-<body>
+{% block content %}
+<div class="col-lg-6 col-offset-3 panel">
 
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-offset-3 panel">
+  <h1 class="margin-base-vertical">edX Server - beta</h1>
 
-				<h1 class="margin-base-vertical">edX Server - beta</h1>
+  <p>To get your own edX server, fill the form below.</p>
 
-        <p>To get your own edX server, fill the form below.</p>
+  <p>The service is currently in beta-test, and places are limited. Delivered free of charge and without any guarantee until the end of the beta. The pricing will then be close to the cost of similar resources on AWS (for example, a small EC2 instance is 32€/month).</p>
 
-        <p>The service is currently in beta-test, and places are limited. Delivered free of charge and without any guarantee until the end of the beta. The pricing will then be close to the cost of similar resources on AWS (for example, a small EC2 instance is 32€/month).</p>
+  <form class="margin-base-vertical" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <p class="input-group">
+      <span class="input-group-addon"><span class="icon-user"></span>&nbsp; Account name:</span>
+      {{ form.username }}
+      {{ form.username.errors }}
+    </p>
+    <p class="input-group">
+      <span class="input-group-addon"><span class="icon-envelope"></span>&nbsp; Email:</span>
+      {{ form.email }}
+      {{ form.email.errors }}
+    </p>
+    <br />
+    <p class="text-center">
+      <button type="submit" class="btn btn-success btn-large">Apply for beta</button>
+    </p>
+    <p class="help-block text-center"><small>
+      Or <a href="mailto:contact@edxserver.com">contact us</a> for custom installations<br />
+    </small></p>
+  </form>
 
-        <form class="margin-base-vertical" method="post">
-          {% csrf_token %}
-					<p class="input-group">
-						<span class="input-group-addon"><span class="icon-user"></span>&nbsp; Account name:</span>
-						<input type="text" class="form-control input-medium" name="username" placeholder="myschool" />
-					</p>
-					<p class="input-group">
-						<span class="input-group-addon"><span class="icon-envelope"></span>&nbsp; Email:</span>
-						<input type="text" class="form-control input-medium" name="email" placeholder="bob@gmail.com" />
-          </p>
-          <br />
-					<p class="text-center">
-						<button type="submit" class="btn btn-success btn-large">Apply for beta</button>
-					</p>
-					</span>
-				</form>
+  <div class="margin-base-vertical">
+    <small class="text-muted">
+      <a href="http://code.edx.org/">edX</a> is Free Software, available under the <a href="http://www.gnu.org/licenses/agpl.html">AGPLv3</a>. <a href="http://edxserver.com/">edX server</a> service by <a href="http://antoviaque.org/">Xavier Antoviaque / Flouzo</a>.
+    </small>
+  </div>
 
-				<div class="margin-base-vertical">
-          <small class="text-muted">
-            Contact: <a href="mailto:contact@edxserver.com">contact@edxserver.com</a><br />
-            <a href="http://code.edx.org/">edX</a> is Free Software, available under the <a href="http://www.gnu.org/licenses/agpl.html">AGPLv3</a>. <a href="http://edxserver.com/">edX server</a> service by <a href="http://antoviaque.org/">Xavier Antoviaque / Flouzo</a>.
-          </small>
-				</div>
-
-			</div><!-- //main content -->
-		</div><!-- //row -->
-	</div> <!-- //container -->
-
-</body>
-</html>
+</div><!-- //main content -->
+{% endblock %}

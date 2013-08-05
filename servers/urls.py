@@ -11,5 +11,5 @@ from views.register import RegisterView
 
 urlpatterns = patterns('',
     url(r'^$', RegisterView.as_view(), name=u'register'),
-    url(r'^beta/confirmation$', TemplateView.as_view(template_name=u'beta_confirmation.html')),
+    url(r'^register/confirmation/?$', TemplateView.as_view(template_name=u'register_confirmation.html')),
 )
