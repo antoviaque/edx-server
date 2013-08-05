@@ -1,0 +1,33 @@
+html {
+    background-image: url(../img/tweed.png);
+}
+
+body {
+    padding-top: 20px;
+    font-size: 16px;
+    font-family: "Open Sans",serif;
+    background: transparent;
+}
+
+h1 {
+    font-family: "Abel", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+/* Override B3 .panel adding a subtly transparent background */
+.panel {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.margin-base-vertical {
+    margin: 40px 0;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.input-group-addon {
+    width: 180px;
+}
