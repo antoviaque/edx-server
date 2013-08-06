@@ -131,6 +131,23 @@ INSTALLED_APPS = (
 import djcelery
 djcelery.setup_loader()
 
+# novaclient ################
+
+# Auth
+OS_USERNAME = os.environ.get('OS_USERNAME', None)
+OS_PASSWORD = os.environ.get('OS_PASSWORD', None)
+OS_TENANT_NAME = os.environ.get('OS_TENANT_NAME', None)
+OS_AUTH_URL = os.environ.get('OS_AUTH_URL', None)
+
+# Scheduling
+OS_AVAILABILITY_ZONE = os.environ.get('OS_AVAILABILITY_ZONE', 'bm0007')
+# Stock Ubuntu image from http://uec-images.ubuntu.com/precise/20130805/
+OS_BASE_IMAGE = os.environ.get('OS_BASE_IMAGE', 'ubuntu-precise-12.04-amd64-201308')
+
+# Security
+OS_SECURITY_GROUP_SINGLEVM = os.environ.get('OS_SECURITY_GROUP_SINGLEVM', 'edx')
+OS_KEY_NAME = os.environ.get('OS_KEY_NAME', 'laptop')
+
 #############################
 
 # A sample logging configuration. The only tangible logging
