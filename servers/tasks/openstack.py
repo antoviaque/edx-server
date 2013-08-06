@@ -19,12 +19,14 @@ def nova_boot(vm_name):
                          settings.OS_TENANT_NAME,
                          settings.OS_AUTH_URL,
                          service_type="compute")
-
-    # TODO: Check that server doesn't already exist with same name
-
     image = nova.images.find(name=settings.OS_BASE_IMAGE)
     flavor = nova.flavors.find(name='m1.small')
     
+    # Check that server doesn't already exist with same name
+    server = nova.servers.find(name=vm_name)
+    if server:
+        raise KeyError, 'VM "{0}" already exists'.format(vm_name)
+
     server = nova.servers.create(name=vm_name,
                                  image=image,
                                  flavor=flavor,
@@ -33,10 +35,10 @@ def nova_boot(vm_name):
                                      'default', 
                                      settings.OS_SECURITY_GROUP_SINGLEVM],
                                  key_name=settings.OS_KEY_NAME)
-    #   meta={'foo': 'bar'},
-    #   userdata="hello moto",
-    #   files={
-    #       '/etc/passwd': 'some data', # a file
-    #       '/tmp/foo.txt': StringIO.StringIO('data'), # a stream
+    #                            meta={'foo': 'bar'},
+    #                            userdata="hello moto",
+    #                            files={
+    #                               '/etc/passwd': 'some data', # a file
+    #                               '/tmp/foo.txt': StringIO.StringIO('data'), # a stream
 
-    return [server.id] # TODO: Logs
+    return server.id
