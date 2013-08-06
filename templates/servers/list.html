@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-lg-12 panel">
+
+  <h1 class="margin-base-vertical">Create server</h1>
+
+  <table class="table">
+    <tr>
+      <th>Login</th>
+      <th>Email</th>
+      <th>Servers</th>
+    </tr>
+    {% for user in user_list %}
+    <tr >
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        {% if not user.server_set.count %}
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="user_pk" value="{{ user.pk }}" />
+          <button type="submit" class="btn btn-default">Create server</button>
+        </form>
+        {% else %}
+        <table class="table">
+          <tr>
+            <th>Server</th>
+            <th>VM</th>
+          </tr>
+          {% for server in user.server_set.all %}
+          <tr>
+            <td>{{ server }}</td>
+            <td>{{ server.vm_set.all }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+
+</div>
+{% endblock %}

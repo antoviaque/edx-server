@@ -3,6 +3,7 @@
 
 from celery import task
 from django.conf import settings
+from novaclient.exceptions import NotFound
 from novaclient.v1_1 import client
 
 
@@ -23,8 +24,11 @@ def nova_boot(vm_name):
     flavor = nova.flavors.find(name='m1.small')
     
     # Check that server doesn't already exist with same name
-    server = nova.servers.find(name=vm_name)
-    if server:
+    try:
+        server = nova.servers.find(name=vm_name)
+    except NotFound:
+        pass
+    else:
         raise KeyError, 'VM "{0}" already exists'.format(vm_name)
 
     server = nova.servers.create(name=vm_name,

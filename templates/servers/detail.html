@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-lg-12 panel">
+
+  <h1 class="margin-base-vertical">Server {{ server.name }}</h1>
+
+  <ul>
+    <li>pk: {{ server.pk }}</li>
+    <li>user: {{ server.user }}</li>
+  </ul>
+
+  <h2>Task</h2>
+
+  <div>{{ server.get_task_result }}</div>
+
+</div>
+{% endblock %}
