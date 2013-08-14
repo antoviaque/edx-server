@@ -49,6 +49,8 @@ class Server(TimeStampedModel):
     """
     objects = ServerManager()
 
+    permissions = (("can_admin", "Can access the server admin interface"),)
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(max_length=200)
     mysql_password = models.CharField(max_length=200, default=make_random_password)
